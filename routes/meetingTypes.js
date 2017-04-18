@@ -7,7 +7,7 @@ let meetingTypeId=0;
 let makeMeetingType=function (name,abbreviation) {
     meetingTypeId++;
     return {
-        _id:meetingTypeId,
+        _id:meetingTypeId.toString(),
         name:name,
         abbreviation:abbreviation
     }
@@ -19,12 +19,10 @@ let wm = makeMeetingType("Women's Meeting","WM");
 let spar = makeMeetingType("Speaker/Participation","SPAR");
 let bm = makeMeetingType("Beginner's Meeting","BM");
 let allTypes=[bbt,bbs,span,wm,spar,bm];
-let allTypesMapped = allTypes.reduce((map,obj)=>{
-    map[obj._id]=obj;
-    return map;
-});
+let allTypesMapped = {};
+allTypes.forEach((i)=>allTypesMapped[i._id]=i);
 router.get('/',function (req,res,next) {
-    console.log(allTypes);
-    res.send(allTypes);
+    console.log(allTypesMapped);
+    res.send(allTypesMapped);
 });
 module.exports=router;
