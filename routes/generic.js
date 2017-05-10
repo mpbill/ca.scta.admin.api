@@ -3,7 +3,7 @@ let express = require('express');
 let ObjectId = require('mongodb').ObjectId;
 let router = express.Router();
 let authenticate = require('../auth/login').authenticate;
-let allowed=["addresses"];
+let allowed=["addresses","meetingGroups"];
 let arrayToObj=require('../helpers/arrayToObject');
 let allowedMiddleware=function (req, res, next) {
     if(allowed.indexOf(req.params.name)===-1){
